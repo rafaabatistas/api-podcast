@@ -1,5 +1,10 @@
 <?php 
 
+  if(!array_key_exists('path', $_GET)) {
+    echo 'Error. Path missing';
+    exit();
+  }
+
   $path = explode("/", $_GET['path']);
   $contents = file_get_contents('server.json');
 
