@@ -11,7 +11,9 @@
   $body = file_get_contents('php://input');
 
   if($method === 'GET') {
-    echo json_encode($json);
+    if($json[$path[0]]) {
+      echo json_encode($json[$path[0]]);
+    }
   } else {
     echo '[]';
   }
