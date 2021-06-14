@@ -29,10 +29,25 @@
 
   if($method === 'GET') {
     if($json[$path[0]]) {
-      echo json_encode($json[$path[0]]);
+      if($param1 === '') {
+        echo json_encode($json[$path[0]]);
+      } else {
+        $encontrado = -1;
+        foreach($json[$path[0]] as $key => $obj) {
+          if($obj['id'] === $param1) {
+            $encontrado = $key;
+            break;
+          };  
+        };
+        if($encontrado >= 0) {
+          echo json_encode($json[$path[0]][$encontrado]);
+        } else {
+          echo 'ERROR';
+          exit();
+        }
+      }
+    } else {
+      echo '[]';
     }
-  } else {
-    echo '[]';
   }
-
 ?>
