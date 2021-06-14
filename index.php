@@ -6,6 +6,18 @@
   }
 
   $path = explode("/", $_GET['path']);
+
+  if(count($path) === 0 || $path[0] === '') {
+    echo 'Error. Path missing';
+    exit();
+  }
+
+  $param1 = "";
+
+  if(count($path) > 1) {
+    $param1 = $path[1];
+  }
+
   $contents = file_get_contents('server.json');
 
   $json = json_decode($contents, true);
